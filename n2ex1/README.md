@@ -1,1 +1,1 @@
-Falta imatge
+Revisat, afegit identifying relationships
