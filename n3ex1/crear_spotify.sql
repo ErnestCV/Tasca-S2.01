@@ -85,8 +85,10 @@ ENGINE = InnoDB;
 -- Table `spotify`.`usuaris_pagaments`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `spotify`.`usuaris_pagaments` (
+  `id_up` INT NOT NULL AUTO_INCREMENT,
   `usuari_id` INT NOT NULL,
   `pagament_id` INT NOT NULL,
+  PRIMARY KEY (`id_up`, `usuari_id`, `pagament_id`),
   CONSTRAINT `fk_usuaris_pagaments_pagament1`
     FOREIGN KEY (`pagament_id`)
     REFERENCES `spotify`.`pagament` (`id_pagament`)
@@ -220,10 +222,12 @@ CREATE INDEX `fk_canco_album1_idx` ON `spotify`.`canco` (`album_id` ASC) VISIBLE
 -- Table `spotify`.`playlists_cancons`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `spotify`.`playlists_cancons` (
-  `canco_id` INT NULL,
-  `playlist_id` INT NULL,
-  `usuari_afegit_id` INT NULL,
+  `id_pc` INT NOT NULL AUTO_INCREMENT,
+  `canco_id` INT NOT NULL,
+  `playlist_id` INT NOT NULL,
+  `usuari_afegit_id` INT NOT NULL,
   `data_afegit` DATE NULL,
+  PRIMARY KEY (`id_pc`, `playlist_id`, `usuari_afegit_id`, `canco_id`),
   CONSTRAINT `fk_playlists_cancons_usuari1`
     FOREIGN KEY (`usuari_afegit_id`)
     REFERENCES `spotify`.`usuari` (`id_usuari`)
@@ -252,8 +256,10 @@ CREATE INDEX `fk_playlists_cancons_canco1_idx` ON `spotify`.`playlists_cancons` 
 -- Table `spotify`.`artistes_relacions`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `spotify`.`artistes_relacions` (
+  `id_relacio` INT NOT NULL AUTO_INCREMENT,
   `artista_id` INT NOT NULL,
   `artista_relacionat_id` INT NOT NULL,
+  PRIMARY KEY (`id_relacio`, `artista_id`, `artista_relacionat_id`),
   CONSTRAINT `fk_artistes_relacions_artista1`
     FOREIGN KEY (`artista_id`)
     REFERENCES `spotify`.`artista` (`id_artista`)
@@ -275,8 +281,10 @@ CREATE INDEX `fk_artistes_relacions_artista2_idx` ON `spotify`.`artistes_relacio
 -- Table `spotify`.`artistes_usuaris_seguidors`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `spotify`.`artistes_usuaris_seguidors` (
-  `artista_id` INT NULL,
-  `usuari_id` INT NULL,
+  `id_au` INT NOT NULL AUTO_INCREMENT,
+  `artista_id` INT NOT NULL,
+  `usuari_id` INT NOT NULL,
+  PRIMARY KEY (`id_au`, `usuari_id`, `artista_id`),
   CONSTRAINT `fk_artistes_usuaris_artista1`
     FOREIGN KEY (`artista_id`)
     REFERENCES `spotify`.`artista` (`id_artista`)
@@ -298,8 +306,10 @@ CREATE INDEX `fk_artistes_usuaris_usuari1_idx` ON `spotify`.`artistes_usuaris_se
 -- Table `spotify`.`usuari_canco_fav`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `spotify`.`usuari_canco_fav` (
-  `usuari_id` INT NULL,
-  `canco_id` INT NULL,
+  `id_uc` INT NOT NULL AUTO_INCREMENT,
+  `usuari_id` INT NOT NULL,
+  `canco_id` INT NOT NULL,
+  PRIMARY KEY (`id_uc`, `usuari_id`, `canco_id`),
   CONSTRAINT `fk_usuari_canco_fav_usuari1`
     FOREIGN KEY (`usuari_id`)
     REFERENCES `spotify`.`usuari` (`id_usuari`)
@@ -321,8 +331,10 @@ CREATE INDEX `fk_usuari_canco_fav_canco1_idx` ON `spotify`.`usuari_canco_fav` (`
 -- Table `spotify`.`usuari_album_fav`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `spotify`.`usuari_album_fav` (
-  `album_id` INT NULL,
-  `usuari_id` INT NULL,
+  `id_au` INT NOT NULL AUTO_INCREMENT,
+  `album_id` INT NOT NULL,
+  `usuari_id` INT NOT NULL,
+  PRIMARY KEY (`id_au`, `usuari_id`, `album_id`),
   CONSTRAINT `fk_usuari_album_fav_usuari1`
     FOREIGN KEY (`usuari_id`)
     REFERENCES `spotify`.`usuari` (`id_usuari`)
