@@ -229,8 +229,10 @@ CREATE INDEX `fk_like_comentari_comentari1_idx` ON `youtube`.`like_comentari` (`
 -- Table `youtube`.`etiquetes_videos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `youtube`.`etiquetes_videos` (
+  `id_ev` INT NOT NULL AUTO_INCREMENT,
   `etiqueta_id` INT(15) NOT NULL,
   `video_id` INT(15) NOT NULL,
+  PRIMARY KEY (`id_ev`, `video_id`, `etiqueta_id`),
   CONSTRAINT `fk_etiquetes_videos_etiqueta`
     FOREIGN KEY (`etiqueta_id`)
     REFERENCES `youtube`.`etiqueta` (`id_etiqueta`)
@@ -252,8 +254,10 @@ CREATE INDEX `fk_etiquetes_videos_video1_idx` ON `youtube`.`etiquetes_videos` (`
 -- Table `youtube`.`usuaris_canals`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `youtube`.`usuaris_canals` (
+  `id_uc` INT NOT NULL AUTO_INCREMENT,
   `subscriptor_id` INT(15) NOT NULL,
   `canal_id` INT(15) NOT NULL,
+  PRIMARY KEY (`id_uc`, `subscriptor_id`, `canal_id`),
   CONSTRAINT `fk_usuaris_canals_usuari1`
     FOREIGN KEY (`subscriptor_id`)
     REFERENCES `youtube`.`usuari` (`id_usuari`)
@@ -275,8 +279,10 @@ CREATE INDEX `fk_usuaris_canals_canal1_idx` ON `youtube`.`usuaris_canals` (`cana
 -- Table `youtube`.`playlists_videos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `youtube`.`playlists_videos` (
+  `id_pv` INT NOT NULL AUTO_INCREMENT,
   `playlist_id` INT(15) NOT NULL,
   `video_id` INT(15) NOT NULL,
+  PRIMARY KEY (`id_pv`, `playlist_id`, `video_id`),
   CONSTRAINT `fk_playlists_videos_playlist1`
     FOREIGN KEY (`playlist_id`)
     REFERENCES `youtube`.`playlist` (`id_playlist`)
