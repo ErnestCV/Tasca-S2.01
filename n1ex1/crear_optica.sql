@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `optica`.`ulleres` (
   `tipus_montura` ENUM('metàl·lica', 'flotant', 'pasta') NULL,
   `color_montura` VARCHAR(15) NULL,
   `preu` FLOAT(6,2) NULL,
-  PRIMARY KEY (`id_ulleres`),
+  PRIMARY KEY (`id_ulleres`, `marca_id`),
   CONSTRAINT `fk_ulleres_marca1`
     FOREIGN KEY (`marca_id`)
     REFERENCES `optica`.`marca` (`id_marca`)
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `optica`.`venda` (
   `data_venda` DATE NULL,
   `client_id` INT(9) NOT NULL,
   `empleat` VARCHAR(45) NULL,
-  PRIMARY KEY (`id_venda`),
+  PRIMARY KEY (`id_venda`, `client_id`, `ulleres_id`),
   CONSTRAINT `fk_venda_clients1`
     FOREIGN KEY (`client_id`)
     REFERENCES `optica`.`clients` (`id_client`)
