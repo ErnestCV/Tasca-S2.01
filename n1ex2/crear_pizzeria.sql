@@ -262,8 +262,10 @@ VALUES ('beguda', NULL, 'Beguda2', 'Descripcio5', 'Imatge5.png', 1.49);
 -- Table `pizzeria`.`comandes_productes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pizzeria`.`comandes_productes` (
+  `id_cp` INT NOT NULL AUTO_INCREMENT,
   `comanda_id` INT(12) NOT NULL,
   `producte_id` INT(6) NOT NULL,
+  PRIMARY KEY (`id_cp`, `comanda_id`, `producte_id`),
   CONSTRAINT `fk_comandes_productes_comanda1`
     FOREIGN KEY (`comanda_id`)
     REFERENCES `pizzeria`.`comanda` (`id_comanda`)
